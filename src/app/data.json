@@ -1,0 +1,5 @@
+[{
+    "html1": "<div>{{data.name1}}</div><div>{{data.age}}</div>",
+    "html2": "<div>{{data.name2}}</div><div>{{data.age}}</div>"
+    
+}]

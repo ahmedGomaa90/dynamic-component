@@ -42,5 +42,19 @@
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
     "typescript": "~2.2.0"
-  }
+  },
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmedGomaa90/dynamic-component.git"
+  },
+  "keywords": [
+    "dynamic",
+    "component"
+  ],
+  "author": "Ahmed Gomaa",
+  "bugs": {
+    "url": "https://github.com/ahmedGomaa90/dynamic-component/issues"
+  },
+  "homepage": "https://github.com/ahmedGomaa90/dynamic-component#readme"
 }
