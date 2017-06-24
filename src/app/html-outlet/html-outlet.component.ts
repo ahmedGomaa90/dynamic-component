@@ -4,14 +4,14 @@ import {
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 export function createComponentFactory(compiler: Compiler, metadata: Component): Promise<ComponentFactory<any>> {
     const cmpClass = class DynamicComponent {
     };
     const decoratedCmp = Component(metadata)(cmpClass);
 
-    @NgModule({ imports: [CommonModule, RouterModule], declarations: [decoratedCmp] })
+    @NgModule({ imports: [CommonModule, RouterModule, ReactiveFormsModule], declarations: [decoratedCmp] })
     class DynamicHtmlModule { }
 
     return compiler.compileModuleAndAllComponentsAsync(DynamicHtmlModule)
@@ -20,13 +20,12 @@ export function createComponentFactory(compiler: Compiler, metadata: Component):
         });
 }
 
-@Component({
+@Directive({
     selector: 'html-outlet',
-    template: ''
 })
 export class HtmlOutlet {
     @Input('html') html: string;
-    @Input('data') data: any;
+    @Input('args') args: any;
     cmpRef: ComponentRef<any>;
 
     constructor(private vcRef: ViewContainerRef, private compiler: Compiler) {
@@ -50,7 +49,7 @@ export class HtmlOutlet {
             .then(factory => {
                 const injector = ReflectiveInjector.fromResolvedProviders([], this.vcRef.parentInjector);
                 this.cmpRef = this.vcRef.createComponent(factory, 0, injector, []);
-                this.cmpRef.instance['data'] = this.data;
+                this.cmpRef.instance['args'] = this.args;
             });
     }
 

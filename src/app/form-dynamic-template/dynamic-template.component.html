@@ -1,0 +1,8 @@
+<p>
+  dynamic-template works!
+</p>
+<ng-container *ngIf="args.form != null">
+  <html-outlet [html]="html" [args]="args"></html-outlet>
+</ng-container>
+
+<button [disabled]="args.form==null || !args.form.valid" (click)="submit()">submit</button>
